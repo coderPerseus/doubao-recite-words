@@ -1,0 +1,26 @@
+[
+  {
+    "id": "workplace",
+    "name": "职场高频",
+    "description": "会议、沟通与日常协作中的高频英语",
+    "count": 300,
+    "builtIn": true,
+    "accent": "sage"
+  },
+  {
+    "id": "cet4",
+    "name": "CET-4 核心",
+    "description": "大学英语四级高频核心词汇",
+    "count": 500,
+    "builtIn": true,
+    "accent": "slate"
+  },
+  {
+    "id": "programmer",
+    "name": "程序员英语",
+    "description": "代码、产品与技术文档中的常见词汇",
+    "count": 300,
+    "builtIn": true,
+    "accent": "sand"
+  }
+]

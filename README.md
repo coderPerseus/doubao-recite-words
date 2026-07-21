@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# chatWords
 
-## Getting Started
+一个藏在 ChatGPT 风格聊天页面里的本地背单词工具。AI 回复是中文释义、英文解释和挖空例句，用户在输入框中猜出对应单词。
 
-First, run the development server:
+## 功能
+
+- 3 个内置词本：职场高频 300、CET-4 核心 500、程序员英语 300
+- CSV / JSON 自定义词本导入、预览与校验
+- 发音音频与浏览器 SpeechSynthesis 降级
+- 练习队列、错误提示、跳过、完成总结与本地进度
+- 浅色、深色、手机侧栏适配
+- 无账号、无数据库、无业务后端
+
+## 本地开发
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+质量检查：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm test
+pnpm lint
+pnpm typecheck
+pnpm build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Cloudflare Workers
 
-## Learn More
+项目使用 `@opennextjs/cloudflare`：
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm cf:build
+pnpm cf:preview
+npx wrangler whoami
+pnpm cf:deploy
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Worker 名为 `chatwords`，默认发布到当前 Cloudflare 账号的 `workers.dev`。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 自定义词本
 
-## Deploy on Vercel
+CSV 列：
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+word,zh,en,example,phonetic,audio,aliases
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+其中 `word`、`zh`、`en`、`example` 必填，多条释义或别名使用 `|` 或 `；` 分隔。页面的 Upload word book 对话框可以直接下载模板。
+
+## 词典来源
+
+- [ECDICT](https://github.com/skywind3000/ECDICT)，MIT License
+- [Free Dictionary API](https://dictionaryapi.dev/)，用于补充部分英文释义、例句和发音
+- 浏览器 [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/Window/speechSynthesis)，作为免费发音降级
+
+`pnpm dict:build` 会重新整理词典。正常产品构建直接使用已经生成在 `public/data` 的轻量 JSON，不依赖在线词典服务。
