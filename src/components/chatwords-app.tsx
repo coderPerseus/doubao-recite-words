@@ -388,18 +388,21 @@ export default function ChatWordsApp() {
 
   const speak = useCallback((entry: WordEntry) => {
     pronunciationRef.current?.pause();
-    speechSynthesis.cancel();
+    const synthesis = window.speechSynthesis;
+    synthesis?.cancel();
 
     const playSystemVoice = () => {
-      speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(entry.word);
+      const Utterance = window.SpeechSynthesisUtterance;
+      if (!synthesis || !Utterance) return;
+      synthesis.cancel();
+      const utterance = new Utterance(entry.word);
       utterance.lang = "en-US";
       utterance.rate = settings.speechRate;
-      const voices = speechSynthesis.getVoices();
+      const voices = synthesis.getVoices();
       utterance.voice = voices.find((voice) =>
         ["Samantha", "Ava", "Google US English", "Microsoft Aria Online"].some((name) => voice.name.includes(name)),
       ) ?? voices.find((voice) => voice.lang.toLocaleLowerCase().startsWith("en-us")) ?? null;
-      speechSynthesis.speak(utterance);
+      synthesis.speak(utterance);
     };
 
     const sources = [youdaoPronunciationUrl(entry.word), entry.audio].filter((source): source is string => Boolean(source));
