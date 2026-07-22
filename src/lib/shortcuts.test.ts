@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchAppShortcut, shortcutKeys } from "./shortcuts";
+import { matchAppShortcut, shortcutDefinitions, shortcutKeys } from "./shortcuts";
 
 function shortcutEvent(code: string, overrides: Partial<Parameters<typeof matchAppShortcut>[0]> = {}) {
   return {
@@ -24,8 +24,10 @@ describe("app shortcuts", () => {
     expect(matchAppShortcut(shortcutEvent("KeyH"))).toBe("history");
     expect(matchAppShortcut(shortcutEvent("KeyU"))).toBe("import");
     expect(matchAppShortcut(shortcutEvent("KeyB"))).toBe("sidebar");
+    expect(matchAppShortcut(shortcutEvent("KeyG"))).toBe("chatgpt");
     expect(matchAppShortcut(shortcutEvent("Comma"))).toBe("settings");
-    expect(Object.keys(shortcutKeys)).toHaveLength(8);
+    expect(Object.keys(shortcutKeys)).toHaveLength(9);
+    expect(shortcutDefinitions).toContainEqual({ action: "跳转到 ChatGPT", keys: shortcutKeys.chatgpt });
   });
 
   it("does not steal shortcuts with extra modifiers", () => {

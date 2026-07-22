@@ -509,6 +509,8 @@ export default function ChatWordsApp() {
       } else if (action === "sidebar") {
         if (window.matchMedia("(max-width: 767px)").matches) setSidebarOpen((open) => !open);
         else setSidebarCollapsed((collapsed) => !collapsed);
+      } else if (action === "chatgpt") {
+        window.location.assign("https://chatgpt.com/");
       } else if (action === "speak" && currentEntry) {
         speak(currentEntry);
       } else if (action === "skip" && currentEntry && !isTyping && !modal) {

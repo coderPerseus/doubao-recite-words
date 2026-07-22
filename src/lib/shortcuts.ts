@@ -6,6 +6,7 @@ export type AppShortcutAction =
   | "history"
   | "import"
   | "sidebar"
+  | "chatgpt"
   | "settings";
 
 export const shortcutKeys = {
@@ -16,6 +17,7 @@ export const shortcutKeys = {
   history: ["Alt", "H"],
   import: ["Alt", "U"],
   sidebar: ["Alt", "B"],
+  chatgpt: ["Alt", "G"],
   settings: ["Alt", ","],
 } as const;
 
@@ -29,6 +31,7 @@ export const shortcutDefinitions = [
   { action: "查看学习历史", keys: shortcutKeys.history },
   { action: "上传自定义词本", keys: shortcutKeys.import },
   { action: "显示或隐藏侧边栏", keys: shortcutKeys.sidebar },
+  { action: "跳转到 ChatGPT", keys: shortcutKeys.chatgpt },
   { action: "打开设置", keys: shortcutKeys.settings },
   { action: "关闭弹窗或侧边栏", keys: ["Escape"] },
 ] as const;
@@ -52,6 +55,7 @@ export function matchAppShortcut(event: ShortcutEvent): AppShortcutAction | null
     case "KeyH": return "history";
     case "KeyU": return "import";
     case "KeyB": return "sidebar";
+    case "KeyG": return "chatgpt";
     case "Comma": return "settings";
     default: return null;
   }
