@@ -38,6 +38,7 @@ export type SessionResult = {
 export type StudySession = {
   id: string;
   bookId: string;
+  title?: string;
   queue: string[];
   index: number;
   results: SessionResult[];
@@ -56,7 +57,7 @@ export type WordProgress = {
 };
 
 export type UserSettings = {
-  theme: "light" | "dark" | "system";
+  theme: "chatgpt" | "deepseek" | "vscode-dark-pro" | "vscode-light" | "solarized-light";
   autoPlay: boolean;
   speechRate: number;
   sessionSize: 10 | 20 | 50 | "all";

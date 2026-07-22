@@ -58,8 +58,26 @@ export const storage = {
   async latestSession(bookId: string): Promise<StudySession | undefined> {
     const sessions = await getAll<StudySession>("sessions");
     return sessions
-      .filter((session) => session.bookId === bookId && !session.completedAt)
+      .filter((session) => session.bookId === bookId)
       .sort((a, b) => b.startedAt.localeCompare(a.startedAt))[0];
+  },
+  async replaceBookSession(session: StudySession): Promise<void> {
+    const sessions = await getAll<StudySession>("sessions");
+    const database = await openDatabase();
+    try {
+      const transaction = database.transaction("sessions", "readwrite");
+      const store = transaction.objectStore("sessions");
+      sessions
+        .filter((item) => item.bookId === session.bookId && item.id !== session.id)
+        .forEach((item) => store.delete(item.id));
+      store.put(session);
+      await new Promise<void>((resolve, reject) => {
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+      });
+    } finally {
+      database.close();
+    }
   },
   getProgress: async (): Promise<WordProgress[]> => {
     const rows = await getAll<WordProgress & { key: string }>("progress");

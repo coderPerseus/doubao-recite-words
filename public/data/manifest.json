@@ -1,5 +1,45 @@
 [
   {
+    "id": "basic-850",
+    "name": "Basic English 850",
+    "description": "Ogden 基础英语核心词汇，包含英美拼写别名",
+    "count": 850,
+    "builtIn": true,
+    "accent": "sage"
+  },
+  {
+    "id": "cet4-full",
+    "name": "CET-4 完整",
+    "description": "ECDICT 四级大纲词汇，已清理缺失释义的异常词条",
+    "count": 3846,
+    "builtIn": true,
+    "accent": "slate"
+  },
+  {
+    "id": "cet6",
+    "name": "CET-6 完整",
+    "description": "ECDICT 六级大纲词汇，包含四级基础词汇",
+    "count": 5403,
+    "builtIn": true,
+    "accent": "slate"
+  },
+  {
+    "id": "kaoyan",
+    "name": "考研英语",
+    "description": "研究生英语入学考试大纲词汇",
+    "count": 4801,
+    "builtIn": true,
+    "accent": "sand"
+  },
+  {
+    "id": "computer-english",
+    "name": "计算机英语",
+    "description": "合并计算机专用英语与 Coder Dict，去重并清理异常词条",
+    "count": 1760,
+    "builtIn": true,
+    "accent": "sand"
+  },
+  {
     "id": "workplace",
     "name": "职场高频",
     "description": "会议、沟通与日常协作中的高频英语",
