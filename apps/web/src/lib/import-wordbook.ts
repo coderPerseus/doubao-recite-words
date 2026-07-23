@@ -1,4 +1,4 @@
-import type { WordBook, WordEntry } from "./types";
+import type { WordBook, WordEntry } from "@chatwords/core";
 
 export type ImportResult = {
   book?: WordBook;

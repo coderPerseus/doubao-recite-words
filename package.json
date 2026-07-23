@@ -1,38 +1,27 @@
 {
-  "name": "chatwords",
+  "name": "chatwords-workspace",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "NODE_ENV=production next build",
-    "start": "next start",
-    "lint": "eslint",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "dict:build": "node scripts/build-dictionaries.mjs",
-    "cf:build": "NODE_ENV=production opennextjs-cloudflare build",
-    "cf:preview": "NODE_ENV=production opennextjs-cloudflare preview",
-    "cf:deploy": "NODE_ENV=production opennextjs-cloudflare deploy"
-  },
-  "dependencies": {
-    "lucide-react": "^1.25.0",
-    "next": "16.2.10",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "dev": "pnpm sync:data && pnpm --filter @chatwords/core build && pnpm --filter @chatwords/web dev",
+    "build": "pnpm sync:data && pnpm --filter @chatwords/core build && pnpm --filter @chatwords/cli build && pnpm --filter @chatwords/web build",
+    "start": "pnpm --filter @chatwords/web start",
+    "lint": "pnpm --filter @chatwords/web lint",
+    "typecheck": "pnpm --filter @chatwords/core build && pnpm --filter @chatwords/cli typecheck && pnpm --filter @chatwords/web typecheck",
+    "test": "pnpm sync:data && pnpm --filter @chatwords/core build && pnpm --filter @chatwords/core test && pnpm --filter @chatwords/web test",
+    "cli": "pnpm --filter @chatwords/core build && pnpm --filter @chatwords/cli build && pnpm --filter @chatwords/cli dev",
+    "dict:build": "node scripts/build-dictionaries.mjs && pnpm sync:data",
+    "sync:data": "node scripts/sync-web-data.mjs",
+    "skill:install": "pnpm --filter @chatwords/core build && pnpm --filter @chatwords/cli build && node scripts/install-skill.mjs",
+    "cf:build": "pnpm sync:data && pnpm --filter @chatwords/core build && pnpm --filter @chatwords/web cf:build",
+    "cf:preview": "pnpm --filter @chatwords/web cf:preview",
+    "cf:deploy": "pnpm --filter @chatwords/web cf:deploy"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "^1.20.1",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@vitest/coverage-v8": "^4.1.10",
     "csv-parse": "^7.0.1",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.10",
-    "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.10",
-    "wrangler": "^4.112.0"
+    "vitest": "^4.1.10"
   }
 }

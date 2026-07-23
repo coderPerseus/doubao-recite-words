@@ -1,4 +1,4 @@
-import type { SessionResult, StudySession, WordEntry, WordProgress } from "./types";
+import type { SessionResult, StudySession, WordEntry, WordProgress } from "./types.js";
 
 export function normalizeAnswer(value: string): string {
   return value.normalize("NFKC").trim().toLocaleLowerCase("en-US").replace(/\s+/g, " ");

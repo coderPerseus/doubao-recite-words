@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import type { WordBook } from "./types";
+import type { WordBook } from "@chatwords/core";
 
 const expected = {
   workplace: 300,

@@ -8,7 +8,8 @@ import { parse } from "csv-parse";
 
 const root = process.cwd();
 const cacheDir = path.join(root, ".cache", "dictionaries");
-const outputDir = path.join(root, "public", "data", "books");
+const dataDir = path.join(root, "packages", "core", "data", "public-data");
+const outputDir = path.join(dataDir, "books");
 const ecdictPath = path.join(cacheDir, "ecdict.csv");
 const ecdictUrl = "https://raw.githubusercontent.com/skywind3000/ECDICT/master/ecdict.csv";
 const basicEnglishUrl = "https://gist.githubusercontent.com/eduellery/b82de59c04519b01b37f07d73360707e/raw/basic-english-850-words.txt";
@@ -371,5 +372,5 @@ for (const book of books) {
 }
 
 manifest.sort((a, b) => manifestOrder.indexOf(a.id) - manifestOrder.indexOf(b.id));
-await writeFile(path.join(root, "public", "data", "manifest.json"), JSON.stringify(manifest, null, 2));
+await writeFile(path.join(dataDir, "manifest.json"), JSON.stringify(manifest, null, 2));
 console.log("Dictionary build complete.");

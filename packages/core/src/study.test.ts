@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { hintFor, isCorrectAnswer, maskExample, normalizeAnswer, recordProgress } from "./study";
-import type { WordEntry } from "./types";
+import { hintFor, isCorrectAnswer, maskExample, normalizeAnswer, recordProgress } from "./study.js";
+import type { WordEntry } from "./types.js";
 
 const entry: WordEntry = {
   id: "organize",

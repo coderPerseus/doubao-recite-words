@@ -1,0 +1,4 @@
+interface:
+  display_name: "chatWords Learn"
+  short_description: "Continue vocabulary practice with global progress"
+  default_prompt: "Use $chatwords-learn to continue my vocabulary practice from the saved global state."

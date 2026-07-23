@@ -62,3 +62,23 @@ export type UserSettings = {
   speechRate: number;
   sessionSize: 10 | 20 | 50 | "all";
 };
+
+export type LearnerState = {
+  version: 1;
+  activeBookId?: string;
+  sessions: StudySession[];
+  progress: WordProgress[];
+};
+
+export type PracticePrompt = {
+  bookId: string;
+  bookName: string;
+  zh: string[];
+  en: string;
+  example: string;
+  phonetic?: string;
+  position: number;
+  total: number;
+  wrongAttempts: number;
+  hint?: string;
+};

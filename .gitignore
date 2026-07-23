@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -19,9 +20,15 @@
 /.open-next/
 /.wrangler/
 /.cache/
+/apps/web/.next/
+/apps/web/.open-next/
+/apps/web/.wrangler/
+/apps/web/out/
+/apps/web/public/data/
 
 # production
 /build
+/packages/*/dist/
 
 # misc
 .DS_Store

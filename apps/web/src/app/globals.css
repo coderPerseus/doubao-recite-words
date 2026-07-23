@@ -224,8 +224,6 @@ button:disabled { cursor: default; opacity: .42; }
 .typing-dots i:nth-child(3) { animation-delay: 240ms; }
 .completion-message h2 { margin: 0 0 10px; font-size: 20px; line-height: 28px; }
 .dark-action { min-height: 38px; margin-top: 8px; padding: 7px 15px; color: var(--accent-contrast); background: var(--accent); border-radius: 9px; font-size: 14px; font-weight: 600; }
-.scroll-spacer { height: 160px; }
-
 .composer-zone { position: relative; z-index: 12; padding: 0 20px; background: linear-gradient(to top, var(--bg) 72%, transparent); }
 .composer-column { width: min(640px, 100%); margin: 0 auto; }
 .composer-skip-row { height: 40px; display: flex; align-items: flex-start; justify-content: center; }
@@ -370,8 +368,6 @@ button:disabled { cursor: default; opacity: .42; }
 :root[data-theme="deepseek"] .pronunciation-action { color: #6b7280; }
 :root[data-theme="deepseek"] .response-actions button { color: #737b8c; }
 :root[data-theme="deepseek"] .user-bubble { background: #edf3ff; }
-:root[data-theme="deepseek"] .scroll-spacer { height: 210px; }
-
 :root[data-theme="deepseek"] .composer-zone { padding: 0 32px; background: linear-gradient(to top, #fff 82%, rgba(255,255,255,0)); }
 :root[data-theme="deepseek"] .composer-column { width: min(648px, 100%); }
 :root[data-theme="deepseek"] .composer {

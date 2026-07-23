@@ -28,11 +28,22 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { FormEvent, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import {
+  createSession,
+  hintFor,
+  isCorrectAnswer,
+  maskExample,
+  recordProgress,
+  type StudySession,
+  type UserSettings,
+  type WordBook,
+  type WordBookSummary,
+  type WordEntry,
+  type WordProgress,
+} from "@chatwords/core";
 import { parseWordBook, type ImportResult } from "@/lib/import-wordbook";
 import { matchAppShortcut, shortcutDefinitions, shortcutKeys } from "@/lib/shortcuts";
-import { createSession, hintFor, isCorrectAnswer, maskExample, recordProgress } from "@/lib/study";
 import { storage } from "@/lib/storage";
-import type { StudySession, UserSettings, WordBook, WordBookSummary, WordEntry, WordProgress } from "@/lib/types";
 
 const defaultSettings: UserSettings = {
   theme: "chatgpt",
@@ -376,6 +387,7 @@ export default function ChatWordsApp() {
   }, [settings]);
 
   useEffect(() => {
+    if (window.matchMedia("(max-width: 767px)").matches) return;
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
     if (!isTyping) inputRef.current?.focus();
   }, [session?.index, isTyping]);
@@ -699,7 +711,6 @@ export default function ChatWordsApp() {
                 )}
               </>
             )}
-            <div className="scroll-spacer" />
           </div>
         </div>
 

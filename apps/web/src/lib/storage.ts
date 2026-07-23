@@ -1,4 +1,4 @@
-import type { StudySession, WordBook, WordProgress } from "./types";
+import type { StudySession, WordBook, WordProgress } from "@chatwords/core";
 
 const DB_NAME = "chatwords";
 const DB_VERSION = 1;
